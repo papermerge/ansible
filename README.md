@@ -1,6 +1,12 @@
 # Ansible Playbook for Papermerge DMS
 
 
+## Requirements
+
+- Remote host with ssh access and Ubuntu 22.04 LTS
+- ansible == 2.15
+
+
 ## Ansible Inventory
 
 Ansible inventory file is not included. You have to [create one](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html).
