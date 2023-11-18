@@ -33,4 +33,5 @@ Of course you need to adjust above ``ansible.cfg`` to your own specific setup.
 $ ansible all -m ping
 $ ansible all --list-hosts
 $ ansible all -m gather_facts
+$ ansible all -m apt -a name=vim --become --ask-become-pass
 ```
