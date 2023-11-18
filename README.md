@@ -7,6 +7,13 @@
 - ansible == 2.15
 
 
+## Usage
+
+```
+$ ansible-playbook playbook.yml
+```
+
+
 ## Ansible Inventory
 
 Ansible inventory file is not included. You have to [create one](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html).
