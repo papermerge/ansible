@@ -7,7 +7,7 @@ Ansible inventory file is not included. You have to [create one](https://docs.an
 
 Here is a sample inventory file with just one host defined by IP:
 
-```inventory
+```
 192.168.56.99
 ```
 
@@ -16,7 +16,7 @@ Here is a sample inventory file with just one host defined by IP:
 
 Ansible config is not included. Here is sample ``ansible.cfg`` file:
 
-```ansible.cfg
+```
 [defaults]
 inventory = inventory
 host_key_checking = False
