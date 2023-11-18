@@ -5,12 +5,6 @@
 
 Ansible inventory file is not included. You have to [create one](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html).
 
-Here is a sample inventory file with just one host defined by IP:
-
-```
-192.168.56.99
-```
-
 
 ## Ansible Config
 
