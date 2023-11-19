@@ -1,8 +1,10 @@
 - name: Deploy web app
   community.docker.docker_container:
     name: web_app
-    image: papermerge/papermerge:3.0a7
+    image: "{{ image }}"
     env:
-      PAPERMERGE__MAIN__SECRET_KEY: "{{ secret_key }}"
-      DJANGO_SUPERUSER_PASSWORD: "{{ superuser_password }}"
-
+      PAPERMERGE__SECURITY__SECRET_KEY: "{{ secret_key }}"
+      PAPERMERGE__AUTH__PASSWORD: "{{ superuser_password }}"
+      PAPERMERGE__AUTH__USERNAME: "{{ superuser_username }}"
+    ports:
+      - 9400:80

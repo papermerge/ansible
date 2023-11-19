@@ -3,6 +3,14 @@
 - hosts: all
   become: true
   roles:
-    - base
-    - docker
-    - papermerge
+    - role: base
+      tags:
+        - base
+    - role: docker
+      tags:
+        - docker
+    - role: papermerge
+      tags:
+        - papermerge
+
+

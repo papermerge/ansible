@@ -1,0 +1,5 @@
+---
+secret_key:
+superuser_password:
+image: papermerge/papermerge:3.0a8
+superuser_username: "admin"
