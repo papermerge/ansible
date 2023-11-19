@@ -9,8 +9,9 @@
     - role: docker
       tags:
         - docker
+    - role: redis
+      tags:
+        - redis
     - role: papermerge
       tags:
         - papermerge
-
-
