@@ -13,6 +13,7 @@
       tags:
         - redis
     - role: db_postgres
+      tags:
         - db
     - role: papermerge
       tags:

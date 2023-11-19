@@ -8,6 +8,8 @@
       POSTGRES_DB: "{{ db_name }}"
     ports:
       - "{{ db_port }}:{{ db_port }}"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
   register: db_container
 
 - name: Wait until PostgresSQL is available

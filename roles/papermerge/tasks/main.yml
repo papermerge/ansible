@@ -8,6 +8,10 @@
       PAPERMERGE__AUTH__USERNAME: "{{ superuser_username }}"
       PAPERMERGE__DATABASE__URL: "{{ database_url }}"
       PAPERMERGE__REDIS__URL: "{{ redis_url }}"
+    volumes:
+        - data:/db
+        - index_db:/core_app/index_db
+        - media:/core_app/media
     ports:
       - 9400:80
 
@@ -16,6 +20,10 @@
     name: worker
     image: "{{ image }}"
     command: worker
+    volumes:
+        - data:/db
+        - index_db:/core_app/index_db
+        - media:/core_app/media
     env:
       PAPERMERGE__SECURITY__SECRET_KEY: "{{ secret_key }}"
       PAPERMERGE__AUTH__PASSWORD: "{{ superuser_password }}"
