@@ -27,7 +27,7 @@
       - db
       - redis
     ports:
-      - 9400:80
+      - "{{web_app_port}}:80"
 
 - name: Deploy worker
   community.docker.docker_container:

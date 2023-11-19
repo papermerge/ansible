@@ -4,6 +4,7 @@ superuser_password:
 database_url:
 
 superuser_username: admin
+web_app_port: 9400
 image: papermerge/papermerge:3.0a8
 
 redis_url: "redis://redis:6379/0"
