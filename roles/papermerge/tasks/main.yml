@@ -1,0 +1,44 @@
+- name: Create /etc/papermerge folder
+  file:
+    path: /etc/papermerge
+    state: directory
+
+- name: Copy logging.yml to remote
+  copy:
+    src: logging.yml
+    dest: /etc/papermerge/logging.yml
+
+- name: Deploy web app
+  community.docker.docker_container:
+    name: web_app
+    image: "{{ image }}"
+    env:
+      PAPERMERGE__SECURITY__SECRET_KEY: "{{ secret_key }}"
+      PAPERMERGE__AUTH__PASSWORD: "{{ superuser_password }}"
+      PAPERMERGE__AUTH__USERNAME: "{{ superuser_username }}"
+      PAPERMERGE__DATABASE__URL: "{{ database_url }}"
+      PAPERMERGE__REDIS__URL: "{{ redis_url }}"
+    volumes:
+        - data:/db
+        - index_db:/core_app/index_db
+        - media:/core_app/media
+        - /etc/papermerge/logging.yml:/core_app/logging.yml
+    ports:
+      - 9400:80
+
+- name: Deploy worker
+  community.docker.docker_container:
+    name: worker
+    image: "{{ image }}"
+    command: worker
+    volumes:
+        - data:/db
+        - index_db:/core_app/index_db
+        - media:/core_app/media
+        - /etc/papermerge/logging.yml:/core_app/logging.yml
+    env:
+      PAPERMERGE__SECURITY__SECRET_KEY: "{{ secret_key }}"
+      PAPERMERGE__AUTH__PASSWORD: "{{ superuser_password }}"
+      PAPERMERGE__AUTH__USERNAME: "{{ superuser_username }}"
+      PAPERMERGE__DATABASE__URL: "{{ database_url }}"
+      PAPERMERGE__REDIS__URL: "{{ redis_url }}"

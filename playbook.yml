@@ -3,5 +3,18 @@
 - hosts: all
   become: true
   roles:
-    - base
-    - docker
+    - role: base
+      tags:
+        - base
+    - role: docker
+      tags:
+        - docker
+    - role: redis
+      tags:
+        - redis
+    - role: db_postgres
+      tags:
+        - db
+    - role: papermerge
+      tags:
+        - papermerge

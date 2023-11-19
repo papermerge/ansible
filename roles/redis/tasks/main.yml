@@ -1,0 +1,12 @@
+- name: "Setup Redis container on 6379:6379"
+  community.docker.docker_container:
+    name: redis
+    image: "{{ redis_image }}"
+    ports:
+      - "6379:6379"
+
+  register: redis_container
+
+- name: Wait until Redis is available
+  wait_for: port="6379" delay=6
+  when: redis_container.changed
