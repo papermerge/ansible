@@ -1,7 +1,15 @@
 ---
 secret_key:
 superuser_password:
-image: papermerge/papermerge:3.0a8
+database_url:
+
 superuser_username: admin
+image: papermerge/papermerge:3.0a8
+
 redis_url: "redis://redis:6379/0"
 redis_image: "redis:6"
+
+db_user: scott
+db_name: mydatabase
+db_port: 5432
+postgres_image: bitnami/postgresql:14.4.0

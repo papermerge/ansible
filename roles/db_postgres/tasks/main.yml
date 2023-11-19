@@ -1,0 +1,15 @@
+- name: "PostgreSQL"
+  community.docker.docker_container:
+    name: db
+    image: "{{ postgres_image }}"
+    env:
+      POSTGRES_USER: "{{ db_user }}"
+      POSTGRES_PASSWORD: "{{ db_pass }}"
+      POSTGRES_DB: "{{ db_name }}"
+    ports:
+      - "{{ db_port }}:{{ db_port }}"
+  register: db_container
+
+- name: Wait until PostgresSQL is available
+  wait_for: port="{{db_port | int}}" delay=6
+  when: db_container.changed
