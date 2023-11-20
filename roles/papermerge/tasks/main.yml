@@ -8,6 +8,11 @@
     src: logging.yml
     dest: /etc/papermerge/logging.yml
 
+- name: Create {{ backup_folder }} folder
+  file:
+    path: "{{ backup_folder }}"
+    state: directory
+
 - name: Deploy web app
   community.docker.docker_container:
     name: web_app
@@ -22,6 +27,7 @@
     volumes:
       - data:/db
       - media:/core_app/media
+      - "{{backup_folder}}:/backup/"
       - /etc/papermerge/logging.yml:/core_app/logging.yml
     links:
       - db
