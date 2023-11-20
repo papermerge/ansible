@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  tasks:
+    - name: Create Backup
+      community.docker.docker_container_exec:
+        container: web_app
+        command: backup.sh /backup/
+      register: result
+    - name: Print stdout
+      ansible.builtin.debug:
+        var: result.stdout

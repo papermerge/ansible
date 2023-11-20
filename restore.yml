@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  tasks:
+    - name: Restore Backup
+      community.docker.docker_container_exec:
+        container: web_app
+        command: restore.sh {{ backup_file  }}
+      register: result
+    - name: Print stdout
+      ansible.builtin.debug:
+        var: result.stdout
