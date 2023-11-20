@@ -1,0 +1,16 @@
+- name: Solr
+  community.docker.docker_container:
+    name: solr
+    image: "{{ solr_image }}"
+    ports:
+      - "{{ solr_port }}:{{ solr_port }}"
+    volumes:
+      - solr_data:/var/solr
+    command:
+      - solr-precreate
+      - "{{ index_name }}"
+  register: solr_container
+
+- name: Wait until Solr is available
+  wait_for: port="{{solr_port | int}}" delay=6
+  when: solr_container.changed

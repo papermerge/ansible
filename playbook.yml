@@ -15,6 +15,9 @@
     - role: db_postgres
       tags:
         - db
+    - role: solr
+      tags:
+        - solr
     - role: papermerge
       tags:
         - papermerge

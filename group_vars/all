@@ -14,3 +14,8 @@ db_user: scott
 db_name: mydatabase
 db_port: 5432
 postgres_image: bitnami/postgresql:14.4.0
+
+solr_image: solr:9.3
+solr_port: 8983
+index_name: pmg_index
+search_url: solr://solr:8983/pmg_index
