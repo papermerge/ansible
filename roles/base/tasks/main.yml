@@ -14,5 +14,6 @@
       - python3-pip
       - virtualenv
       - python3-setuptools
+      - python3-docker
     state: latest
     update_cache: true

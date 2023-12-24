@@ -14,10 +14,6 @@
     state: latest
     update_cache: true
 
-- name: Install Docker Module for Python
-  pip:
-    name: docker
-
 # sudo groupadd docker
 - name: Create "docker" group
   group:
@@ -27,7 +23,7 @@
 # sudo usermod -aG docker vagrant
 - name: Add remote "ubuntu" user to "docker" group
   user:
-    name: vagrant
+    name: "{{ linux_user }}"
     groups:
       - docker
     append: yes

@@ -3,3 +3,4 @@
 inventory
 Vagrantfile
 ansible.cfg
+secrets

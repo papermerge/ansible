@@ -3,8 +3,8 @@
 
 ## Requirements
 
-- Remote host with ssh access and Ubuntu 22.04 LTS
-- ansible == 2.15
+- Remote host with ssh access and Debian12 / Ubuntu 22.04 LTS
+- On your local computer you need to have `ansible` == 2.15
 
 
 ## Ansible Inventory
