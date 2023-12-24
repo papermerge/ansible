@@ -8,6 +8,8 @@
       POSTGRES_DB: "{{ db_name }}"
     ports:
       - "{{ db_port }}:{{ db_port }}"
+    networks:
+      - name: paper
     volumes:
       - postgres_data:/var/lib/postgresql/data/
   register: db_container

@@ -4,6 +4,8 @@
     image: "{{ redis_image }}"
     ports:
       - "6379:6379"
+    networks:
+      - name: paper
 
   register: redis_container
 

@@ -8,7 +8,7 @@ redis_url: "redis://redis:6379/0"
 redis_image: "redis:6"
 
 db_user: paper
-db_name: paper
+db_name: paperdb
 db_port: 5432
 postgres_image: bitnami/postgresql:14.4.0
 
@@ -17,5 +17,15 @@ solr_port: 8983
 index_name: pmg_index
 search_url: solr://solr:8983/pmg_index
 
-
 linux_user: eugen
+linux_group: eugen
+
+traefik_dir: /var/www/traefik
+traefik_api_url: traefik.trusel.net
+traefik_api_user: eugen
+
+
+cloudflare_email: eugen@papermerge.com
+acme_email: eugen@papermerge.com
+acme_domain: trusel.net
+acme_provider: cloudflare

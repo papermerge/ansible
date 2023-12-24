@@ -9,6 +9,9 @@
     - role: docker
       tags:
         - docker
+    - role: traefik
+      tags:
+        - traefik
     - role: redis
       tags:
         - redis

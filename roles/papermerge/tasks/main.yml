@@ -33,6 +33,8 @@
       - db
       - redis
       - solr
+    networks:
+      - name: paper
     ports:
       - "{{web_app_port}}:80"
 
@@ -41,6 +43,8 @@
     name: worker
     image: "{{ image }}"
     command: worker
+    networks:
+      - name: paper
     volumes:
       - data:/db
       - media:/core_app/media

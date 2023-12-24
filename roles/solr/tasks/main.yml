@@ -6,6 +6,8 @@
       - "{{ solr_port }}:{{ solr_port }}"
     volumes:
       - solr_data:/var/solr
+    networks:
+      - name: paper
     command:
       - solr-precreate
       - "{{ index_name }}"
