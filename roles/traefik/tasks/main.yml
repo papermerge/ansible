@@ -23,10 +23,9 @@
     name: paper
 
 - name: Create the traefik container
-  docker_container:
+  community.docker.docker_container:
     name: traefik
     image: traefik:2.2
-    restart_policy: unless-stopped
     recreate: true
     networks:
       - name: paper
@@ -44,7 +43,7 @@
       traefik.http.routers.traefik.service: "api@internal"
       traefik.http.routers.traefik.middlewares: "auth"
       traefik.http.middlewares.auth.basicauth.users: "{{ traefik_api_user }}:{{ traefik_api_password | password_hash('blowfish','1234567890123456789012') }}"
+
     env:
       CLOUDFLARE_API_KEY: "{{ cloudflare_api_key }}"
       CLOUDFLARE_EMAIL: "{{ cloudflare_email  }}"
-

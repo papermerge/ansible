@@ -2,7 +2,6 @@
 superuser_username: eugen
 web_app_port: 9400
 image: papermerge/papermerge:3.0dev22
-backup_folder: /home/vagrant/backup/
 
 redis_url: "redis://redis:6379/0"
 redis_image: "redis:6"
@@ -23,7 +22,6 @@ linux_group: eugen
 traefik_dir: /var/www/traefik
 traefik_api_url: traefik.trusel.net
 traefik_api_user: eugen
-
 
 cloudflare_email: eugen@papermerge.com
 acme_email: eugen@papermerge.com
