@@ -37,9 +37,9 @@
       traefik.http.routers.paper.tls: "true"
       traefik.http.routers.paper.tls.certresolver: le
 
-- name: Deploy worker
+- name: Deploy {{ worker_count }} worker(s)
   community.docker.docker_container:
-    name: worker
+    name: worker{{ item }}
     image: "{{ image }}"
     command: worker
     volumes:
@@ -59,3 +59,4 @@
       PAPERMERGE__DATABASE__URL: "{{ database_url }}"
       PAPERMERGE__REDIS__URL: "{{ redis_url }}"
       PAPERMERGE__SEARCH__URL: "{{ search_url }}"
+  with_sequence: count={{ worker_count }}
