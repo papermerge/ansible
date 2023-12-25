@@ -2,7 +2,7 @@
 superuser_username: eugen
 web_app_port: 9400
 image: papermerge/papermerge:3.0rc2
-worker_count: 3
+worker_count: 2
 
 redis_url: "redis://redis:6379/0"
 redis_image: "redis:6"

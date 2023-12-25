@@ -12,6 +12,8 @@
   community.docker.docker_container:
     name: web_app
     image: "{{ image }}"
+    restart: true
+    restart_policy: "unless-stopped"
     env:
       PAPERMERGE__SECURITY__SECRET_KEY: "{{ secret_key }}"
       PAPERMERGE__AUTH__PASSWORD: "{{ superuser_password }}"
@@ -41,6 +43,8 @@
   community.docker.docker_container:
     name: worker{{ item }}
     image: "{{ image }}"
+    restart: true
+    restart_policy: "unless-stopped"
     command: worker
     volumes:
       - data:/db
