@@ -19,6 +19,7 @@
       PAPERMERGE__AUTH__PASSWORD: "{{ superuser_password }}"
       PAPERMERGE__AUTH__USERNAME: "{{ superuser_username }}"
       PAPERMERGE__DATABASE__URL: "{{ database_url }}"
+      PAPERMERGE__DATABASE__POOL_SIZE: "{{ db_conn_pool_size | int }}"
       PAPERMERGE__REDIS__URL: "{{ redis_url }}"
       PAPERMERGE__SEARCH__URL: "{{ search_url }}"
     volumes:
