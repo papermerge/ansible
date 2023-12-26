@@ -30,10 +30,10 @@ DATABASES = {
     'default': dj_database_url.config(
         env='PAPERMERGE__DATABASE__URL',
         default='sqlite:////db/db.sqlite3',
-        conn_max_age=0,
-        conn_health_checks=True
+        conn_max_age=5
     ),
 }
+
 
 SEARCH_URL = config.get(
     'search',
