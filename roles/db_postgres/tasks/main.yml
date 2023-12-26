@@ -5,9 +5,10 @@
     restart: true
     restart_policy: "unless-stopped"
     env:
-      POSTGRES_USER: "{{ db_user }}"
-      POSTGRES_PASSWORD: "{{ db_pass }}"
-      POSTGRES_DB: "{{ db_name }}"
+      POSTGRESQL_USER: "{{ db_user }}"
+      POSTGRESQL_PASSWORD: "{{ db_pass }}"
+      POSTGRES_DATABASE: "{{ db_name }}"
+      POSTGRESQL_POSTGRES_PASSWORD: "{{ db_postgres_pass }}"
     ports:
       - "{{ db_port }}:{{ db_port }}"
     networks:
