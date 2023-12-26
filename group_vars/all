@@ -1,7 +1,7 @@
 ---
 superuser_username: eugen
 web_app_port: 9400
-image: papermerge/papermerge:3.0rc2
+image: papermerge/papermerge:3.0rc3
 worker_count: 2
 
 redis_url: "redis://redis:6379/0"
@@ -10,6 +10,7 @@ redis_image: "redis:6"
 db_user: paper
 db_name: paperdb
 db_port: 5432
+db_conn_pool_size: 20
 postgres_image: bitnami/postgresql:14.4.0
 
 solr_image: solr:9.3
