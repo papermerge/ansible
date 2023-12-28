@@ -1,42 +1,102 @@
 # Ansible Playbook for Papermerge DMS
 
+In this repository are playbooks for production deployment, data backup and
+data restoration of Papermerge 3.
+
+Papermerge instance in deployed behind Traefik reverse proxy.
+Traefik takes care of TLS certificates.
+
+Choose one of following options:
+
+- option 1: install Papermerge with PostgreSQL database
+- option 2: install Papermerge with PostgreSQL + PgBouncer
+- option 3: install Papermerge with MariaDB as database
+
 
 ## Requirements
 
-- Remote host with ssh access and Debian12 / Ubuntu 22.04 LTS
+- Remote host with ssh access running Debian12 / Ubuntu 22.04 LTS
 - On your local computer you need to have `ansible` == 2.15
 
+## Secrets
 
-## Ansible Inventory
+This repository does not include "secrets" file.
+Secrets file contains all sensitive (paswords, api tokens) info.
 
-Ansible inventory file is not included. You have to [create one](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html).
+You need to create secrets file e.g. in `group_vars` folder
+and place following content:
 
-All but sensible variables are provided in ``group_vars/all``.
-Sensible variables should be provided in inventory file (which is not in the repo)...
-At least this is where I put sensible variable.
 
-Here is example of my (you need to adjust to your own setup) inventory file:
+	secret_key: ...
+	superuser_password: ...
+	database_url: ...
+	db_pass: ...
+	cloudflare_api_key: ...
+	traefik_api_password: ...
+
+
+## Option 1 / PostgreSQL
+
+Make sure `database_url` in your secrets files matches database related
+options in `group_vars/all` (db_user, db_name). Also port number `database_url`
+should match the one in `db_postgres/vars/main.yml`.
+
+`database_url` should have following format:
+
+	postgresql://<user>:<pass>@db:5432/<dbname>
+
+Install Papermerge DMS with PostgreSQL:
 
 ```
-192.168.56.99 secret_key=abc superuser_password=1234 superuser_username=eugen database_url="postgresql://scott:tiger@db/mydatabase"  db_pass=tiger
+$ ansible-playbook install_1.yml -i inventory --extra-vars "@group_vars/secrets"
 ```
 
+Application will be accessible via https://<acme_domain>
+`acme_domain` is variable you set in `group_vars/all` e.g. trusel.net
 
-## Usage
+## Option 2 / PostgreSQL + PgBouncer
 
-Install Papermerge DMS:
+In this setup application will connect to the database via pgbouncer, this
+means that `database_url` should point to pgbouncer.
+
+Your `database_url` should look like:
+
+	postgresql://<user>:<pass>@pgbouncer:6432/<dbname>
+
+
+Install Papermerge DMS with PostgreSQL and PgBouncer:
 
 ```
-$ ansible-playbook install.yml
+$ ansible-playbook install_2.yml -i inventory --extra-vars "@group_vars/secrets"
 ```
 
-Application will be accessible via http://localhost:<web_app_port>.
+Application will be accessible via https://<acme_domain>
+`acme_domain` is variable you set in `group_vars/all` e.g. trusel.net
+
+
+## Option 3 / MariaDB
+
+For Mysql/MariaDB `database_url` should have following format:
+
+	mysql://<user>:<pass>@db:3306/<dbname>
+
+
+Install Papermerge DMS with MariaDB:
+
+```
+$ ansible-playbook install_3.yml -i inventory --extra-vars "@group_vars/secrets"
+```
+
+## Backup
 
 In order to create a backup:
 
 ```
 $ ansible-playbook backup.yml
 ```
+
+## Restore
+
 
 In order to restore the backup:
 
@@ -46,26 +106,6 @@ ansible-playbook restore.yml --extra-vars "backup_file=/backup/backup_20_11_2023
 
 The backup file path is the one from inside docker container.
 
-## Contribute
-
-The playbooks were created having in mind Ubuntu 22.04 host. You will need to adjust ansible playbooks in case you use another host e.g. Debian, CentOS etc.
-
-I am happy to accept your pull requests!
-
-## Ansible Config
-
-Ansible config is not included. Here is sample ``ansible.cfg`` file:
-
-```
-[defaults]
-inventory = inventory
-host_key_checking = False
-deprication_warnings = False
-remote_user = vagrant
-private_key_file = .vagrant/machines/default/virtualbox/private_key
-```
-
-Of course you need to adjust above ``ansible.cfg`` to your own specific setup.
 
 ## Ansible Cheatsheet
 

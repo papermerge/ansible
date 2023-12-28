@@ -8,7 +8,7 @@
       POSTGRESQL_USER: "{{ db_user }}"
       POSTGRESQL_PASSWORD: "{{ db_pass }}"
       POSTGRES_DATABASE: "{{ db_name }}"
-      POSTGRESQL_POSTGRES_PASSWORD: "{{ db_postgres_pass }}"
+      POSTGRESQL_POSTGRES_PASSWORD: "{{ db_pass }}"
     ports:
       - "{{ db_port }}:{{ db_port }}"
     networks:

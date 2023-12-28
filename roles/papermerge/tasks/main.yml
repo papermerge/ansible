@@ -38,8 +38,6 @@
       - solr
     networks:
       - name: paper
-    ports:
-      - "{{web_app_port}}:80"
     labels:
       traefik.enable: "true"
       traefik.http.routers.paper.rule: "Host(`{{ acme_domain }}`)"
