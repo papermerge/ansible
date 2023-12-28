@@ -3,8 +3,11 @@
 In this repository are playbooks for production deployment, data backup and
 data restoration of Papermerge 3.
 
-Papermerge instance in deployed behind Traefik reverse proxy.
+Papermerge instance is deployed behind Traefik reverse proxy.
 Traefik takes care of TLS certificates.
+
+![](./images/production.svg)
+
 
 Choose one of following options:
 
