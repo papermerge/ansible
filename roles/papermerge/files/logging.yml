@@ -19,7 +19,7 @@ root:
 
 loggers:
   celery:
-    level: INFO
+    level: DEBUG
     handlers: [ console ]
     propagate: no
     format: verbose

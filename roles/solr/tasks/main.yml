@@ -2,6 +2,8 @@
   community.docker.docker_container:
     name: solr
     image: "{{ solr_image }}"
+    restart: true
+    restart_policy: "unless-stopped"
     ports:
       - "{{ solr_port }}:{{ solr_port }}"
     volumes:

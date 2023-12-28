@@ -1,0 +1,25 @@
+- name: "Pg Bouncer"
+  community.docker.docker_container:
+    name: pgbouncer
+    image: "{{ pgbouncer_image }}"
+    restart: true
+    restart_policy: "unless-stopped"
+    env:
+      POSTGRESQL_USERNAME: "{{ db_user }}"
+      POSTGRESQL_PASSWORD: "{{ db_pass }}"
+      POSTGRESQL_DATABASE: "{{db_name}}"
+      PGBOUNCER_DATABASE: "{{db_name}}"
+      POSTGRESQL_HOST: "{{ db_host }}"
+      PGBOUNCER_POOL_MODE: transaction
+      PGBOUNCER_AUTH_TYPE: trust
+      PGBOUNCER_DEFAULT_POOL_SIZE: "{{ pgbouncer_pool_size | int }}"
+      PGBOUNCER_IDLE_TRANSACTION_TIMEOUT: "{{ pgbouncer_idle_timeout | int }}"
+    ports:
+      - "{{ pgbouncer_port }}:{{ pgbouncer_port }}"
+    networks:
+      - name: paper
+  register: pgbouncer_container
+
+- name: Wait until PG Bouncer is available
+  wait_for: port="{{pgbouncer_port | int}}" delay=6
+  when: pgbouncer_container.changed

@@ -26,7 +26,8 @@
   community.docker.docker_container:
     name: traefik
     image: traefik:2.2
-    recreate: true
+    restart: true
+    restart_policy: "unless-stopped"
     networks:
       - name: paper
     ports:

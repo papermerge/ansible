@@ -18,6 +18,9 @@
     - role: db_postgres
       tags:
         - db
+    - role: pgbouncer
+      tags:
+        - pgbouncer
     - role: solr
       tags:
         - solr

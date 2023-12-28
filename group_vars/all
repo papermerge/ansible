@@ -13,6 +13,13 @@ db_port: 5432
 db_conn_pool_size: 20
 postgres_image: bitnami/postgresql:16.1.0
 
+db_host: db
+pgbouncer_image: bitnami/pgbouncer:1.21.0
+pgbouncer_port: 6432
+pgbouncer_pool_size: 50
+pgbouncer_idle_timeout: 3
+
+
 solr_image: solr:9.3
 solr_port: 8983
 index_name: pmg_index
