@@ -1,7 +1,7 @@
 - name: "Setup Redis container on 6379:6379"
   community.docker.docker_container:
     name: redis
-    image: "{{ redis_image }}"
+    image: redis:6
     ports:
       - "6379:6379"
     networks:

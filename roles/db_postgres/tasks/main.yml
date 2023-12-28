@@ -1,7 +1,7 @@
 - name: "PostgreSQL"
   community.docker.docker_container:
     name: db
-    image: "{{ postgres_image }}"
+    image: bitnami/postgresql:16.1.0
     restart: true
     restart_policy: "unless-stopped"
     env:

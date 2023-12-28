@@ -1,0 +1,26 @@
+---
+
+- hosts: all
+  become: true
+  roles:
+    - role: base
+      tags:
+        - base
+    - role: docker
+      tags:
+        - docker
+    - role: traefik
+      tags:
+        - traefik
+    - role: redis
+      tags:
+        - redis
+    - role: mariadb
+      tags:
+        - db
+    - role: solr
+      tags:
+        - solr
+    - role: papermerge
+      tags:
+        - papermerge

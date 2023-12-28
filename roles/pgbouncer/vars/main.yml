@@ -1,0 +1,4 @@
+pgbouncer_pool_size: 50
+pgbouncer_idle_timeout: 3
+pgbouncer_port: 6432
+db_host: db
