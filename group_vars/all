@@ -1,6 +1,6 @@
 ---
 superuser_username: eugen
-image: papermerge/papermerge:3.0rc5
+image: papermerge/papermerge:3.0
 worker_count: 2
 
 redis_url: "redis://redis:6379/0"
