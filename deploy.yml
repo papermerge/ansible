@@ -2,6 +2,8 @@
 
 - hosts: all
   become: true
+  vars_files:
+    - group_vars/secrets
   roles:
     - role: base
       tags:
@@ -15,7 +17,7 @@
     - role: redis
       tags:
         - redis
-    - role: mariadb
+    - role: db_postgres
       tags:
         - db
     - role: solr
@@ -24,3 +26,6 @@
     - role: papermerge
       tags:
         - papermerge
+        - paper
+        - pmg
+        - pm

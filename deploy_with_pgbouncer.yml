@@ -2,6 +2,8 @@
 
 - hosts: all
   become: true
+  vars_files:
+    - group_vars/secrets
   roles:
     - role: base
       tags:
@@ -18,6 +20,9 @@
     - role: db_postgres
       tags:
         - db
+    - role: pgbouncer
+      tags:
+        - pgbouncer
     - role: solr
       tags:
         - solr

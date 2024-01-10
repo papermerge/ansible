@@ -51,7 +51,14 @@ should match the one in `db_postgres/vars/main.yml`.
 Install Papermerge DMS with PostgreSQL:
 
 ```
-$ ansible-playbook install_1.yml -i inventory --extra-vars "@group_vars/secrets"
+$ ansible-playbook deploy.yml
+```
+
+Or if you already deployed previously, and want to redeploy only specific docker image
+of Papermerge (other services are up and running):
+
+```
+$ ansible-playbook deploy.yml --tags paper
 ```
 
 Application will be accessible via https://<acme_domain>
@@ -70,7 +77,7 @@ Your `database_url` should look like:
 Install Papermerge DMS with PostgreSQL and PgBouncer:
 
 ```
-$ ansible-playbook install_2.yml -i inventory --extra-vars "@group_vars/secrets"
+$ ansible-playbook deploy_with_pgbouncer.yml
 ```
 
 Application will be accessible via https://<acme_domain>
@@ -87,7 +94,7 @@ For Mysql/MariaDB `database_url` should have following format:
 Install Papermerge DMS with MariaDB:
 
 ```
-$ ansible-playbook install_3.yml -i inventory --extra-vars "@group_vars/secrets"
+$ ansible-playbook deploy_with_mariadb.yml
 ```
 
 ## Backup

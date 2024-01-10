@@ -13,7 +13,7 @@
     src: settings.py
     dest: /etc/papermerge/settings.py
 
-- name: Deploy web app
+- name: Deploy web app {{ image }}
   community.docker.docker_container:
     name: web_app
     image: "{{ image }}"
