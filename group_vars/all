@@ -1,7 +1,9 @@
 ---
-superuser_username: eugen
-image: papermerge/papermerge:3.0.1rc5
-worker_count: 2
+superuser_username: admin
+image: papermerge/papermerge:3.0.3
+worker_count: 1
+child_processes_count: 1
+default_ocr_lang: 'deu'
 
 redis_url: "redis://redis:6379/0"
 
@@ -24,3 +26,5 @@ cloudflare_email: eugen@papermerge.com
 acme_email: eugen@papermerge.com
 acme_domain: trusel.net
 acme_provider: cloudflare
+
+auth_mode: db

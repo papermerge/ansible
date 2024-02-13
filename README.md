@@ -97,6 +97,32 @@ Install Papermerge DMS with MariaDB:
 $ ansible-playbook deploy_with_mariadb.yml
 ```
 
+## OAuth 2.0 Authentication with Google Provider
+
+This works only for Papermerge version >= 3.1
+You need to set `auth_mode=google` and define following variables:
+
+- google_client_id: <oauth2 client id>
+- google_client_secret: <oauth2 client secret>
+- google_redirect_uri: https://<your-domain>/google/callback
+
+## OAuth 2.0 Authentication with GitHub Provider
+
+This works only for Papermerge version >= 3.1
+
+You need to set `auth_mode=github` and define following variables:
+
+- github_client_id: <oauth2 client id>
+- github_client_secret: <oauth2 client secret>
+- github_redirect_uri: https://<your-domain>/github/callback
+
+
+## `auth_mode`
+
+`auth_mode` is a comma separated list of authentication modes.
+If you want to add both github and google oauth providers, set
+`auth_mode=github,google`
+
 ## Backup
 
 In order to create a backup:

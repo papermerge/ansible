@@ -1,0 +1,2 @@
+google_authorize_url: https://accounts.google.com/o/oauth2/auth
+github_authorize_url: https://github.com/login/oauth/authorize
