@@ -128,6 +128,9 @@ There are three possible values:
 - db (default one)
 - github
 - google
+- ldap
+
+`ldap` mode is exclusive, which means that you can set only `auth_mode=ldap` alone.
 
 ## Backup
 

@@ -33,6 +33,10 @@
   ansible.builtin.set_fact:
     github_auth_env: {}
 
+- name: Set LDAP Auth Env (default valiue)
+  ansible.builtin.set_fact:
+    ldap_auth_env: {}
+
 - name: Set Google Auth Env
   ansible.builtin.set_fact:
     google_auth_env:
@@ -51,13 +55,20 @@
       PAPERMERGE__AUTH__GITHUB_REDIRECT_URI: "{{ github_redirect_uri }}"
   when: "'github' in auth_mode"
 
+- name: Set LDAP Auth Env
+  ansible.builtin.set_fact:
+    ldap_auth_env:
+      PAPERMERGE__AUTH__LDAP_URL: "{{ ldap_url }}"
+      PAPERMERGE__AUTH__LDAP_USER_DN_FORMAT: "{{ ldap_user_dn_format }}"
+  when: "'ldap' in auth_mode"
+
 - name: Deploy web app {{ image }}
   community.docker.docker_container:
     name: web_app
     image: "{{ image }}"
     restart: true
     restart_policy: "unless-stopped"
-    env: "{{ common_env | combine(github_auth_env, google_auth_env) }}"
+    env: "{{ common_env | combine(github_auth_env, google_auth_env, ldap_auth_env) }}"
 
     volumes:
       - data:/db
