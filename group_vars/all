@@ -1,6 +1,6 @@
 ---
 superuser_username: admin
-image: papermerge/papermerge:3.0.3
+image: papermerge/papermerge:3.1
 worker_count: 1
 child_processes_count: 1
 default_ocr_lang: 'deu'
